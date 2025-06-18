@@ -1,110 +1,54 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>AntiCV - L'enfer du recrutement</title>
-  <style>
-    body {
-      background-color: #fefefe;
-      font-family: Arial, sans-serif;
-      color: #222;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #e91e63;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-    .cv-form, .cv-list {
-      margin-top: 20px;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    input, textarea, select, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover {
-      background-color: #d81b60;
-    }
-    .cv-item {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 6px;
-      background-color: #fff0f5;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    .cv-item img {
-      max-width: 80px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-    .cv-item h3 {
-      margin-top: 0;
-      color: #c2185b;
-    }
-  </style>
-</head>
+<html lang='fr'>
+<head><meta charset='UTF-8'><title>AntiCV Deluxe</title>
+<style>
+body {font-family:sans-serif;background:#f5f5f5;margin:0;padding:0}
+header {background:#d81b60;color:#fff;padding:1.5em;text-align:center}
+main {max-width:800px;margin:auto;padding:1em}
+form,.cv-list {background:#fff;padding:1em;border-radius:8px;margin-top:1em;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+label {display:block;margin-top:1em;font-weight:bold}
+input,textarea,select {width:100%;padding:8px;margin-top:0.5em;border-radius:4px;border:1px solid #ccc}
+.avatars {display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.avatars label {cursor:pointer;text-align:center}
+.avatars img {width:60px;height:60px;border-radius:50%;border:2px solid transparent}
+.avatars input:checked + img {border-color:#d81b60}
+.cv-item {margin-top:1em;padding:1em;border-radius:6px;background:#fff0f5}
+</style></head>
 <body>
-  <header>
-    <h1>💥 AntiCV 💥</h1>
-    <p>Le site où les pires CV prennent vie</p>
-  </header>
-  <div class="container">
-    <div class="cv-form">
-      <h2>Créer ton AntiCV</h2>
-      <form action="/submit_cv" method="post">
-        <input type="text" name="pseudo" placeholder="Ton pseudo affreux" required>
-        <input type="text" name="titre" placeholder="Titre débile du CV" required>
-        <textarea name="competences" placeholder="Compétences bidons" required></textarea>
-        <textarea name="experiences" placeholder="Expériences honteuses" required></textarea>
-        <textarea name="ambitions" placeholder="Ambitions foireuses" required></textarea>
-        <select name="pfp_ridicule">
-          <option value="banane.png">Banane</option>
-          <option value="pigeon.png">Pigeon</option>
-          <option value="clown.png">Clown</option>
-        </select>
-        <select name="theme_couleur">
-          <option value="#fff0f5">Rose pastel</option>
-          <option value="#e0ffff">Cyan pâle</option>
-          <option value="#f0fff0">Vert d’eau</option>
-        </select>
-        <button type="submit">Envoyer ton AntiCV</button>
-      </form>
-    </div>
-
-    <div class="cv-list">
-      <h2>Liste des AntiCV</h2>
-      {% for cv in cvs %}
-        <div class="cv-item" style="background-color: {{ cv['theme_couleur'] }}">
-          <img src="/static/{{ cv['pfp_ridicule'] }}" alt="pfp">
-          <h3>{{ cv['titre'] }} (par {{ cv['pseudo'] }})</h3>
-          <p><strong>Compétences:</strong> {{ cv['competences'] }}</p>
-          <p><strong>Expériences:</strong> {{ cv['experiences'] }}</p>
-          <p><strong>Ambitions:</strong> {{ cv['ambitions'] }}</p>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</body>
-</html>
+<header><h1>✨ AntiCV Deluxe ✨</h1><p>Entre absurdité et vérité</p></header>
+<main>
+<form method='POST' action='/submit_cv'>
+<label>Type de CV :</label><select name='type_cv'>
+<option value='serieux'>Sérieux</option><option value='anticv'>AntiCV</option></select>
+<label>Pseudo :</label><input type='text' name='pseudo' required>
+<label>Titre du CV :</label><input type='text' name='titre' required>
+<label>Compétences :</label><textarea name='competences' required></textarea>
+<label>Expériences :</label><textarea name='experiences' required></textarea>
+<label>Ambitions :</label><textarea name='ambitions' required></textarea>
+<label>Objectif de vie :</label><textarea name='objectif_vie'></textarea>
+<label>Hobbies douteux :</label><textarea name='hobbies'></textarea>
+<label>Animal totem :</label><input type='text' name='animal_totem'>
+<label>Citation inspirante :</label><input type='text' name='citation'>
+<label>Thème :</label><select name='theme'>
+<option value='#fff0f5'>Rose pastel</option><option value='#e0ffff'>Cyan pâle</option>
+<option value='#f0fff0'>Vert d’eau</option><option value='#222222'>Noir & or</option>
+<option value='#ede7f6'>Lavande</option><option value='#ffecb3'>Beige doré</option></select>
+<label>Photo de profil :</label><div class='avatars'>
+{% for avatar in ['banane.png','pigeon.png','clown.png','chien.png','chat.png','chameau.png','femme1.png','femme2.png'] %}
+<label><input type='radio' name='pfp_ridicule' value='{{ avatar }}' required><img src='/static/{{ avatar }}'></label>
+{% endfor %}</div>
+<button type='submit' style='margin-top:20px;padding:10px 20px;background:#d81b60;color:white;border:none;border-radius:4px;'>Envoyer</button>
+</form>
+<div class='cv-list'><h2>📋 Liste des AntiCV</h2>
+{% for cv in cvs %}
+<div class='cv-item' style='background-color:{{ cv['theme'] }}'>
+<img src='/static/{{ cv['pfp_ridicule'] }}' width='60' style='border-radius:50%'>
+<h3>{{ cv['titre'] }} (par {{ cv['pseudo'] }})</h3>
+<p><strong>Compétences :</strong> {{ cv['competences'] }}</p>
+<p><strong>Expériences :</strong> {{ cv['experiences'] }}</p>
+<p><strong>Ambitions :</strong> {{ cv['ambitions'] }}</p>
+<p><strong>Objectif :</strong> {{ cv['objectif_vie'] }}</p>
+<p><strong>Hobbies :</strong> {{ cv['hobbies'] }}</p>
+<p><strong>Animal totem :</strong> {{ cv['animal_totem'] }}</p>
+<p><em>"{{ cv['citation'] }}"</em></p></div>
+{% endfor %}</div></main></body></html>
