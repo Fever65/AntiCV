@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>AntiCV - L'enfer du recrutement</title>
+  <style>
+    body {
+      background-color: #ff69b4;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: lime;
+      text-align: center;
+    }
+    .cv-form, .cv-list {
+      margin: 20px auto;
+      padding: 20px;
+      border: 5px dashed yellow;
+      width: 80%;
+      background-color: cyan;
+    }
+    input, textarea, select {
+      display: block;
+      margin: 10px auto;
+      width: 80%;
+      padding: 5px;
+      font-size: 1.1em;
+    }
+    .cv-item {
+      border: 3px dotted red;
+      margin: 10px;
+      padding: 10px;
+      background-color: #ffccff;
+    }
+  </style>
+</head>
+<body>
+  <h1>💥 AntiCV 💥</h1>
+  <div class="cv-form">
+    <h2>Créer ton AntiCV</h2>
+    <form action="/submit_cv" method="post">
+      <input type="text" name="pseudo" placeholder="Ton pseudo affreux" required>
+      <input type="text" name="titre" placeholder="Titre débile du CV" required>
+      <textarea name="competences" placeholder="Compétences bidons" required></textarea>
+      <textarea name="experiences" placeholder="Expériences honteuses" required></textarea>
+      <textarea name="ambitions" placeholder="Ambitions foireuses" required></textarea>
+      <select name="pfp_ridicule">
+        <option value="banane.png">Banane</option>
+        <option value="pigeon.png">Pigeon</option>
+        <option value="clown.png">Clown</option>
+      </select>
+      <select name="theme_couleur">
+        <option value="#ff69b4">Rose fluo</option>
+        <option value="#00ffff">Cyan dégueu</option>
+        <option value="#00ff00">Vert lime</option>
+      </select>
+      <button type="submit">Envoyer ton AntiCV</button>
+    </form>
+  </div>
+  <div class="cv-list">
+    <h2>Liste des AntiCV</h2>
+    {% for cv in cvs %}
+      <div class="cv-item" style="background-color: {{ cv['theme_couleur'] }}">
+        <h3>{{ cv['titre'] }} (par {{ cv['pseudo'] }})</h3>
+        <p><strong>Compétences:</strong> {{ cv['competences'] }}</p>
+        <p><strong>Expériences:</strong> {{ cv['experiences'] }}</p>
+        <p><strong>Ambitions:</strong> {{ cv['ambitions'] }}</p>
+        <img src="/static/{{ cv['pfp_ridicule'] }}" alt="pfp" width="100">
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
