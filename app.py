@@ -38,11 +38,9 @@ def submit_cv():
 
     conn = db_connection()
     cur = conn.cursor()
-    # Création utilisateur (anonyme simple)
     cur.execute("INSERT INTO users (pseudo, email, password, pfp_ridicule, theme_couleur) VALUES (?, '', '', ?, ?)",
                 (pseudo, pfp, couleur))
     user_id = cur.lastrowid
-    # Création AntiCV
     cur.execute("INSERT INTO anticv (user_id, titre, competences, experiences, ambitions) VALUES (?, ?, ?, ?, ?)",
                 (user_id, titre, competences, experiences, ambitions))
     conn.commit()
