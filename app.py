@@ -26,15 +26,20 @@ def index():
     cvs = cur.fetchall()
     return render_template('index.html', cvs=cvs)
 
-@app.route('/submit_cv', methods=['POST'])
+@app.route("/submit_cv", methods=["POST"])
 def submit_cv():
-    pseudo = request.form['pseudo']
-    titre = request.form['titre']
-    competences = request.form['competences']
-    experiences = request.form['experiences']
-    ambitions = request.form['ambitions']
-    pfp = request.form['pfp_ridicule']
-    couleur = request.form['theme_couleur']
+    pseudo = request.form["pseudo"]
+    titre = request.form["titre"]
+    competences = request.form["competences"]
+    experiences = request.form["experiences"]
+    ambitions = request.form["ambitions"]
+    objectif_vie = request.form.get("objectif_vie", "")
+    hobbies = request.form.get("hobbies", "")
+    animal_totem = request.form.get("animal_totem", "")
+    citation = request.form.get("citation", "")
+    theme = request.form["theme"]
+    type_cv = request.form["type_cv"]
+    pfp_ridicule = request.form["pfp_ridicule"]
 
     conn = db_connection()
     cur = conn.cursor()
