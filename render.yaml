@@ -1,12 +1,12 @@
-# Render config updated to init DB
 services:
   - type: web
     name: anticv
     env: python
     buildCommand: |
       pip install -r requirements.txt
+    startCommand: |
       sqlite3 anticv.db < init_db.sql
-    startCommand: python app.py
+      python app.py
     plan: free
     branch: main
     region: frankfurt
