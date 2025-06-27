@@ -4,6 +4,7 @@ services:
     env: python
     buildCommand: |
       pip install -r requirements.txt
-    startCommand: |
-      sqlite3 anticv.db < init_db.sql
-      python app.py
+    startCommand: python app.py
+    plan: free
+    branch: main
+    region: frankfurt

@@ -5,7 +5,7 @@ import html
 import os
 
 app = Flask(__name__)
-app.secret_key = 'TON_SUPER_SECRET_ULTRA_FORT'
+app.secret_key = 'TON_SECRET_ULTRA_FORT'  # Remplace par un vrai secret généré
 
 ALLOWED_COLORS = ["red", "blue", "green", "yellow", "orange", "gray", "purple"]
 
@@ -13,6 +13,11 @@ def get_db():
     conn = sqlite3.connect('anticv.db')
     conn.row_factory = sqlite3.Row
     return conn
+
+# Auto-création de la BDD si absente
+if not os.path.exists("anticv.db"):
+    print("Création de la base de données...")
+    os.system("sqlite3 anticv.db < init_db.sql")
 
 @app.route('/')
 def index():
