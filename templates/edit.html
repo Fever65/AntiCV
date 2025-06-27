@@ -9,11 +9,6 @@
     {% endfor %}
   </select><br>
 
-  <select name="type" required>
-    <option value="cv" {% if profile.type == 'cv' %}selected{% endif %}>CV</option>
-    <option value="anticv" {% if profile.type == 'anticv' %}selected{% endif %}>AntiCV</option>
-  </select><br>
-
   <select name="image" required>
     {% for img in images %}
       <option value="{{ img }}" {% if img == profile.image %}selected{% endif %}>{{ img }}</option>

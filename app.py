@@ -35,7 +35,6 @@ def register():
     if request.method == 'POST':
         email = request.form['email'].strip()
         password = request.form['password'].strip()
-
         hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
         db = get_db()
@@ -81,15 +80,14 @@ def create():
         name = html.escape(request.form['name'].strip())
         bio = html.escape(request.form['bio'].strip())
         color = request.form['color'].strip()
-        type_cv = request.form['type'].strip()
         image = request.form['image'].strip()
 
-        if color not in ALLOWED_COLORS or type_cv not in ['cv', 'anticv'] or image not in ALLOWED_IMAGES:
+        if color not in ALLOWED_COLORS or image not in ALLOWED_IMAGES:
             return "Données invalides", 400
 
         db = get_db()
-        db.execute('INSERT INTO profiles (user_id, name, bio, color, type, image) VALUES (?, ?, ?, ?, ?, ?)',
-                   (session['user_id'], name, bio, color, type_cv, image))
+        db.execute('INSERT INTO profiles (user_id, name, bio, color, image) VALUES (?, ?, ?, ?, ?)',
+                   (session['user_id'], name, bio, color, image))
         db.commit()
         db.close()
         return redirect(url_for('index'))
@@ -112,15 +110,14 @@ def edit(id):
         name = html.escape(request.form['name'].strip())
         bio = html.escape(request.form['bio'].strip())
         color = request.form['color'].strip()
-        type_cv = request.form['type'].strip()
         image = request.form['image'].strip()
 
-        if color not in ALLOWED_COLORS or type_cv not in ['cv', 'anticv'] or image not in ALLOWED_IMAGES:
+        if color not in ALLOWED_COLORS or image not in ALLOWED_IMAGES:
             db.close()
             return "Données invalides", 400
 
-        db.execute('UPDATE profiles SET name = ?, bio = ?, color = ?, type = ?, image = ? WHERE id = ?',
-                   (name, bio, color, type_cv, image, id))
+        db.execute('UPDATE profiles SET name = ?, bio = ?, color = ?, image = ? WHERE id = ?',
+                   (name, bio, color, image, id))
         db.commit()
         db.close()
         return redirect(url_for('index'))

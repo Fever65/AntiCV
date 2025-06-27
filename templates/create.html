@@ -9,11 +9,6 @@
     {% endfor %}
   </select><br>
 
-  <select name="type" required>
-    <option value="cv">CV</option>
-    <option value="anticv">AntiCV</option>
-  </select><br>
-
   <select name="image" required>
     {% for img in images %}
       <option value="{{ img }}">{{ img }}</option>

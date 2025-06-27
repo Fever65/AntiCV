@@ -10,6 +10,6 @@ CREATE TABLE profiles (
     name TEXT NOT NULL,
     bio TEXT NOT NULL,
     color TEXT NOT NULL,
-    type TEXT NOT NULL CHECK(type IN ('cv', 'anticv')),
+    image TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
