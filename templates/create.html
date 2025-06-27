@@ -1,20 +1,29 @@
-<h1>Créer un AntiCV</h1>
-<form method="POST">
-  <input type="text" name="name" placeholder="Nom" required maxlength="50"><br>
-  <textarea name="bio" placeholder="Bio" required maxlength="200"></textarea><br>
-  
-  <select name="color" required>
-    {% for c in colors %}
-      <option value="{{ c }}">{{ c }}</option>
-    {% endfor %}
-  </select><br>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Créer un AntiCV</title>
+</head>
+<body>
+  <h1>Créer un AntiCV</h1>
+  <form method="POST">
+    <input type="text" name="name" placeholder="Nom" required maxlength="50"><br>
+    <textarea name="bio" placeholder="Bio" required maxlength="200"></textarea><br>
 
-  <select name="image" required>
-    {% for img in images %}
-      <option value="{{ img }}">{{ img }}</option>
-    {% endfor %}
-  </select><br>
+    <select name="color" required>
+      {% for c in colors %}
+        <option value="{{ c }}">{{ c }}</option>
+      {% endfor %}
+    </select><br>
 
-  <button type="submit">Créer</button>
-</form>
-<a href="{{ url_for('index') }}">Retour</a>
+    <select name="image" required>
+      {% for img in images %}
+        <option value="{{ img }}">{{ img }}</option>
+      {% endfor %}
+    </select><br>
+
+    <button type="submit">Créer</button>
+  </form>
+  <a href="{{ url_for('index') }}">Retour</a>
+</body>
+</html>

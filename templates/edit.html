@@ -1,20 +1,29 @@
-<h1>Modifier AntiCV</h1>
-<form method="POST">
-  <input type="text" name="name" value="{{ profile.name }}" required maxlength="50"><br>
-  <textarea name="bio" required maxlength="200">{{ profile.bio }}</textarea><br>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier AntiCV</title>
+</head>
+<body>
+  <h1>Modifier AntiCV</h1>
+  <form method="POST">
+    <input type="text" name="name" value="{{ profile.name }}" required maxlength="50"><br>
+    <textarea name="bio" required maxlength="200">{{ profile.bio }}</textarea><br>
 
-  <select name="color" required>
-    {% for c in colors %}
-      <option value="{{ c }}" {% if c == profile.color %}selected{% endif %}>{{ c }}</option>
-    {% endfor %}
-  </select><br>
+    <select name="color" required>
+      {% for c in colors %}
+        <option value="{{ c }}" {% if c == profile.color %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select><br>
 
-  <select name="image" required>
-    {% for img in images %}
-      <option value="{{ img }}" {% if img == profile.image %}selected{% endif %}>{{ img }}</option>
-    {% endfor %}
-  </select><br>
+    <select name="image" required>
+      {% for img in images %}
+        <option value="{{ img }}" {% if img == profile.image %}selected{% endif %}>{{ img }}</option>
+      {% endfor %}
+    </select><br>
 
-  <button type="submit">Mettre à jour</button>
-</form>
-<a href="{{ url_for('index') }}">Retour</a>
+    <button type="submit">Mettre à jour</button>
+  </form>
+  <a href="{{ url_for('index') }}">Retour</a>
+</body>
+</html>

@@ -1,3 +1,15 @@
-<h1>{{ profile.name }} ({{ profile.type }})</h1>
-<p>{{ profile.bio }}</p>
-<p style="background-color: {{ profile.color }};">Couleur : {{ profile.color }}</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil</title>
+</head>
+<body>
+  <h1>{{ profile.name }}</h1>
+  <p>{{ profile.bio }}</p>
+  <p style="background-color: {{ profile.color }};">Couleur : {{ profile.color }}</p>
+  <img src="{{ url_for('static', filename=profile.image) }}" alt="Avatar" width="100">
+  <br>
+  <a href="{{ url_for('index') }}">Retour</a>
+</body>
+</html>
