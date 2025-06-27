@@ -1,50 +1,137 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
+import bcrypt
+import html
 
 app = Flask(__name__)
+app.secret_key = 'TON_SUPER_SECRET_ULTRA_FORT'
 
-def get_db_connection():
+ALLOWED_COLORS = ["red", "blue", "green", "yellow", "orange", "gray", "purple"]
+
+def get_db():
     conn = sqlite3.connect('anticv.db')
     conn.row_factory = sqlite3.Row
     return conn
 
-@app.route("/", methods=["GET"])
+@app.route('/')
 def index():
-    conn = get_db_connection()
-    cvs = conn.execute("SELECT * FROM anticv").fetchall()
-    conn.close()
-    return render_template("index.html", cvs=cvs)
+    db = get_db()
+    profiles = db.execute('SELECT * FROM profiles').fetchall()
+    db.close()
+    return render_template('index.html', profiles=profiles)
 
-@app.route("/submit_cv", methods=["POST"])
-def submit_cv():
-    pseudo = request.form["pseudo"]
-    titre = request.form["titre"]
-    competences = request.form["competences"]
-    experiences = request.form["experiences"]
-    ambitions = request.form["ambitions"]
-    objectif_vie = request.form.get("objectif_vie", "")
-    hobbies = request.form.get("hobbies", "")
-    animal_totem = request.form.get("animal_totem", "")
-    citation = request.form.get("citation", "")
-    theme = request.form["theme"]
-    type_cv = request.form["type_cv"]
-    pfp_ridicule = request.form["pfp_ridicule"]
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        email = request.form['email'].strip()
+        password = request.form['password'].strip()
 
-    conn = get_db_connection()
-    conn.execute("""
-        INSERT INTO anticv (pseudo, titre, competences, experiences, ambitions,
-                            objectif_vie, hobbies, animal_totem, citation,
-                            theme, type_cv, pfp_ridicule)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (pseudo, titre, competences, experiences, ambitions,
-          objectif_vie, hobbies, animal_totem, citation, theme, type_cv, pfp_ridicule))
-    conn.commit()
-    conn.close()
+        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-    return redirect("/")
+        db = get_db()
+        try:
+            db.execute('INSERT INTO users (email, password) VALUES (?, ?)', (email, hashed))
+            db.commit()
+        except sqlite3.IntegrityError:
+            return "Email déjà utilisé", 400
+        db.close()
+        return redirect(url_for('login'))
 
-import os
+    return render_template('register.html')
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email'].strip()
+        password = request.form['password'].strip()
+
+        db = get_db()
+        user = db.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+        db.close()
+
+        if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
+            session['user_id'] = user['id']
+            return redirect(url_for('index'))
+        else:
+            return "Identifiants invalides", 403
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        name = html.escape(request.form['name'].strip())
+        bio = html.escape(request.form['bio'].strip())
+        color = request.form['color'].strip()
+        type_cv = request.form['type'].strip()
+
+        if color not in ALLOWED_COLORS or type_cv not in ['cv', 'anticv']:
+            return "Données invalides", 400
+
+        db = get_db()
+        db.execute('INSERT INTO profiles (user_id, name, bio, color, type) VALUES (?, ?, ?, ?, ?)',
+                   (session['user_id'], name, bio, color, type_cv))
+        db.commit()
+        db.close()
+        return redirect(url_for('index'))
+
+    return render_template('create.html', colors=ALLOWED_COLORS)
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    db = get_db()
+    profile = db.execute('SELECT * FROM profiles WHERE id = ? AND user_id = ?', (id, session['user_id'])).fetchone()
+
+    if not profile:
+        db.close()
+        return "Non autorisé", 403
+
+    if request.method == 'POST':
+        name = html.escape(request.form['name'].strip())
+        bio = html.escape(request.form['bio'].strip())
+        color = request.form['color'].strip()
+        type_cv = request.form['type'].strip()
+
+        if color not in ALLOWED_COLORS or type_cv not in ['cv', 'anticv']:
+            db.close()
+            return "Données invalides", 400
+
+        db.execute('UPDATE profiles SET name = ?, bio = ?, color = ?, type = ? WHERE id = ?',
+                   (name, bio, color, type_cv, id))
+        db.commit()
+        db.close()
+        return redirect(url_for('index'))
+
+    db.close()
+    return render_template('edit.html', profile=profile, colors=ALLOWED_COLORS)
+
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete(id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    db = get_db()
+    db.execute('DELETE FROM profiles WHERE id = ? AND user_id = ?', (id, session['user_id']))
+    db.commit()
+    db.close()
+    return redirect(url_for('index'))
+
+@app.route('/profile/<int:id>')
+def profile(id):
+    db = get_db()
+    profile = db.execute('SELECT * FROM profiles WHERE id = ?', (id,)).fetchone()
+    db.close()
+    if not profile:
+        return "Profil introuvable", 404
+    return render_template('profile.html', profile=profile)

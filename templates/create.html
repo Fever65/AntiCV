@@ -1,0 +1,13 @@
+<h1>Créer un AntiCV</h1>
+<form method="POST">
+  <input name="name" placeholder="Nom" required maxlength="50"><br>
+  <textarea name="bio" placeholder="Bio" required maxlength="200"></textarea><br>
+  <select name="color" required>
+    {% for c in colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+  </select><br>
+  <select name="type" required>
+    <option value="cv">CV</option>
+    <option value="anticv">AntiCV</option>
+  </select><br>
+  <button type="submit">Créer</button>
+</form>
