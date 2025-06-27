@@ -1,15 +1,25 @@
 <h1>Modifier AntiCV</h1>
 <form method="POST">
-  <input name="name" value="{{ profile.name }}" required maxlength="50"><br>
+  <input type="text" name="name" value="{{ profile.name }}" required maxlength="50"><br>
   <textarea name="bio" required maxlength="200">{{ profile.bio }}</textarea><br>
+
   <select name="color" required>
     {% for c in colors %}
-    <option value="{{ c }}" {% if c == profile.color %}selected{% endif %}>{{ c }}</option>
+      <option value="{{ c }}" {% if c == profile.color %}selected{% endif %}>{{ c }}</option>
     {% endfor %}
   </select><br>
+
   <select name="type" required>
     <option value="cv" {% if profile.type == 'cv' %}selected{% endif %}>CV</option>
     <option value="anticv" {% if profile.type == 'anticv' %}selected{% endif %}>AntiCV</option>
   </select><br>
+
+  <select name="image" required>
+    {% for img in images %}
+      <option value="{{ img }}" {% if img == profile.image %}selected{% endif %}>{{ img }}</option>
+    {% endfor %}
+  </select><br>
+
   <button type="submit">Mettre à jour</button>
 </form>
+<a href="{{ url_for('index') }}">Retour</a>
