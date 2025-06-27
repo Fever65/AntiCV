@@ -7,6 +7,3 @@ services:
     startCommand: |
       sqlite3 anticv.db < init_db.sql
       python app.py
-    plan: free
-    branch: main
-    region: frankfurt
