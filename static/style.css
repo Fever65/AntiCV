@@ -1,0 +1,63 @@
+/* Mobile First CSS - AntiCV */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 10px;
+  background: #f9f9f9;
+  color: #333;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea, select, button {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 1em;
+}
+
+button, .button {
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+button:hover, .button:hover {
+  background: #0056b3;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 5px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+@media (min-width: 600px) {
+  body {
+    max-width: 600px;
+    margin: auto;
+  }
+}
