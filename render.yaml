@@ -2,8 +2,10 @@ services:
   - type: web
     name: anticv
     env: python
-    buildCommand: "pip install flask flask-cors"
-    startCommand: "python app.py"
+    buildCommand: |
+      pip install -r requirements.txt
+      sqlite3 anticv.db < init_db.sql
+    startCommand: python app.py
     plan: free
     branch: main
     region: frankfurt
