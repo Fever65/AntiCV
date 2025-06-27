@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 import bcrypt
 import html
+import os
 
 app = Flask(__name__)
 app.secret_key = 'TON_SUPER_SECRET_ULTRA_FORT'
@@ -135,3 +136,6 @@ def profile(id):
     if not profile:
         return "Profil introuvable", 404
     return render_template('profile.html', profile=profile)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
