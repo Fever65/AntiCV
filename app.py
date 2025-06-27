@@ -125,18 +125,21 @@ def edit(id):
     db.close()
     return render_template('edit.html', profile=profile, colors=ALLOWED_COLORS, images=ALLOWED_IMAGES)
 
-@app.route('/delete_account', methods=['POST'])
+@app.route('/delete_account', methods=['GET', 'POST'])
 def delete_account():
     if 'user_id' not in session:
         return redirect(url_for('login'))
 
-    db = get_db()
-    db.execute('DELETE FROM profiles WHERE user_id = ?', (session['user_id'],))
-    db.execute('DELETE FROM users WHERE id = ?', (session['user_id'],))
-    db.commit()
-    db.close()
-    session.clear()
-    return redirect(url_for('index'))
+    if request.method == 'POST':
+        db = get_db()
+        db.execute('DELETE FROM profiles WHERE user_id = ?', (session['user_id'],))
+        db.execute('DELETE FROM users WHERE id = ?', (session['user_id'],))
+        db.commit()
+        db.close()
+        session.clear()
+        return redirect(url_for('index'))
+
+    return render_template('delete_account.html')
 
 @app.route('/reset', methods=['GET', 'POST'])
 def reset():
