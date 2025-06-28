@@ -1,10 +1,10 @@
-/* Mobile First CSS - AntiCV */
+/* Mobile-first, lisible sur toutes les couleurs */
 body {
   font-family: sans-serif;
   margin: 0;
   padding: 10px;
-  background: #f9f9f9;
-  color: #333;
+  background: #f4f4f4;
+  color: #222;
 }
 
 h1 {
@@ -53,6 +53,19 @@ li {
   margin-bottom: 5px;
   padding: 8px;
   border-radius: 4px;
+}
+
+li a {
+  display: block;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+li a span {
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 3px;
 }
 
 @media (min-width: 600px) {
