@@ -93,3 +93,26 @@ button {
 button:hover {
   background: #0056b3;
 }
+
+.profile-box {
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-content {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.profile-content img {
+  max-width: 150px;
+  border: 3px solid white;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
