@@ -8,6 +8,7 @@
   <title>Créer un AntiCV</title>
 </head>
 <body>
+  <div class="container">
   <h1>Créer un AntiCV</h1>
   <form method="POST">
     <input type="text" name="name" placeholder="Nom" required maxlength="50"><br>
@@ -28,5 +29,6 @@
     <button type="submit">Créer</button>
   </form>
   <a href="{{ url_for('index') }}">Retour</a>
+</div>
 </body>
 </html>

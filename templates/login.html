@@ -8,6 +8,7 @@
   <title>Connexion</title>
 </head>
 <body>
+  <div class="container">
   <h1>Connexion</h1>
   <form method="POST">
     <input type="email" name="email" placeholder="Email" required><br>
@@ -16,5 +17,6 @@
   </form>
   <a href="{{ url_for('register') }}">Créer un compte</a><br>
   <a href="{{ url_for('reset') }}">Mot de passe oublié ?</a>
+</div>
 </body>
 </html>

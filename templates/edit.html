@@ -7,6 +7,7 @@
   <title>Modifier AntiCV</title>
 </head>
 <body>
+  <div class="container">
   <h1>Modifier AntiCV</h1>
   <form method="POST">
     <input type="text" name="name" value="{{ profile.name }}" required maxlength="50"><br>
@@ -27,5 +28,6 @@
     <button type="submit">Mettre à jour</button>
   </form>
   <a href="{{ url_for('index') }}">Retour</a>
+</div>
 </body>
 </html>

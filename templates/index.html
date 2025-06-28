@@ -7,6 +7,7 @@
   <title>AntiCV - Accueil</title>
 </head>
 <body>
+  <div class="container">
   <h1>Liste des AntiCV</h1>
   {% if profiles %}
     <ul>
@@ -24,5 +25,6 @@
   <a class="button" href="{{ url_for('logout') }}">Déconnexion</a><br>
   <a class="button" href="{{ url_for('delete_account') }}">Supprimer mon compte</a><br>
   <a class="button" href="{{ url_for('reset') }}">Mot de passe oublié</a>
+</div>
 </body>
 </html>
