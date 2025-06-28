@@ -1,26 +1,63 @@
-/* AntiCV - Style propre et lisible */
+/* AntiCV - Style pro et jury ready */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 10px;
-  background: #f4f4f4;
+  padding: 20px;
+  background: #f5f5f5;
   color: #333;
 }
 
 h1 {
-  font-size: 1.6em;
-  margin-bottom: 10px;
   text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 20px;
 }
 
 p {
   text-align: center;
 }
 
+ul {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  max-width: 400px;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+li a {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 5px;
+  background: #007BFF;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 400px;
+  margin: auto;
 }
 
 input, textarea, select, button {
@@ -28,47 +65,16 @@ input, textarea, select, button {
   font-size: 1em;
 }
 
-button, .button {
+button {
   background: #007BFF;
   color: white;
   border: none;
   border-radius: 4px;
-  text-align: center;
-  padding: 10px;
   cursor: pointer;
 }
 
-button:hover, .button:hover {
+button:hover {
   background: #0056b3;
-}
-
-a {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-ul {
-  padding: 0;
-}
-
-li {
-  list-style: none;
-  margin-bottom: 5px;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-li a {
-  display: block;
-  padding: 5px;
-  border-radius: 3px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  text-align: center;
 }
 
 @media (min-width: 600px) {
