@@ -22,6 +22,26 @@ h1 {
   margin-bottom: 20px;
 }
 
+ul {
+  padding: 0;
+  margin: 0 0 30px 0; /* Marge sous la liste pour séparer les boutons */
+  width: 100%;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+li a {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6); /* fond sombre pour lisibilité */
+  color: white;
+  text-align: center;
+}
+
 .profile-box {
   padding: 20px;
   border-radius: 8px;
@@ -44,30 +64,10 @@ h1 {
   border-radius: 8px;
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-li {
-  list-style: none;
-  margin-bottom: 10px;
-}
-
-li a {
-  display: block;
-  padding: 10px;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  text-align: center;
-}
-
 .button {
   display: block;
   padding: 10px 15px;
-  margin: 5px auto;
+  margin: 10px auto 0 auto;  /* Marge entre chaque bouton */
   background: #007BFF;
   color: white;
   border-radius: 4px;
