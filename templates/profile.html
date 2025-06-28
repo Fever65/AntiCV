@@ -9,8 +9,10 @@
   <div class="container">
     <h1>Profil : {{ profile.name }}</h1>
     <div class="profile-box" style="background-color: {{ profile.color }};">
-      <img src="{{ url_for('static', filename=profile.image) }}" alt="Avatar de {{ profile.name }}">
-      <p>{{ profile.bio }}</p>
+      <div class="profile-content">
+        <img src="{{ url_for('static', filename=profile.image) }}" alt="Avatar de {{ profile.name }}">
+        <p>{{ profile.bio }}</p>
+      </div>
     </div>
     <a class="button" href="{{ url_for('index') }}">Retour à la liste</a>
   </div>
