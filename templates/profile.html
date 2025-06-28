@@ -5,14 +5,12 @@
   <title>Profil - {{ profile.name }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <div class="container">
+<body class="profile-page" style="background-color: {{ profile.color }};">
+  <div class="profile-container">
     <h1>Profil : {{ profile.name }}</h1>
-    <div class="profile-box" style="background-color: {{ profile.color }};">
-      <div class="profile-content">
-        <img src="{{ url_for('static', filename=profile.image) }}" alt="Avatar de {{ profile.name }}">
-        <p>{{ profile.bio }}</p>
-      </div>
+    <div class="profile-content">
+      <img src="{{ url_for('static', filename=profile.image) }}" alt="Avatar de {{ profile.name }}">
+      <p>{{ profile.bio }}</p>
     </div>
     <a class="button" href="{{ url_for('index') }}">Retour à la liste</a>
   </div>
