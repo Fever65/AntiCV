@@ -1,24 +1,29 @@
-/* Mobile-first, lisible sur toutes les couleurs */
+/* AntiCV - Style propre et lisible */
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 10px;
-  background: pink !important;
-  color: #222;
+  background: #f4f4f4;
+  color: #333;
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 input, textarea, select, button {
-  margin-bottom: 10px;
   padding: 10px;
   font-size: 1em;
 }
@@ -29,6 +34,8 @@ button, .button {
   border: none;
   border-radius: 4px;
   text-align: center;
+  padding: 10px;
+  cursor: pointer;
 }
 
 button:hover, .button:hover {
@@ -59,13 +66,9 @@ li a {
   display: block;
   padding: 5px;
   border-radius: 3px;
-}
-
-li a span {
   background: rgba(0,0,0,0.6);
   color: white;
-  padding: 2px 4px;
-  border-radius: 3px;
+  text-align: center;
 }
 
 @media (min-width: 600px) {
