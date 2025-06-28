@@ -6,25 +6,29 @@
   <meta charset="UTF-8">
   <title>AntiCV - Accueil</title>
 </head>
+
 <body>
   <div class="container">
-  <h1>Liste des AntiCV</h1>
-  {% if profiles %}
+    <h1>Liste des AntiCV</h1>
+    {% if profiles %}
     <ul>
-    {% for p in profiles %}
+      {% for p in profiles %}
       <li style="background-color: {{ p.color }};">
-        <a href="{{ url_for('profile', id=p.id) }}" style="color:white;">{{ p.name }}</a>
+        <a href="{{ url_for('profile', id=p.id) }}">
+          <span>{{ p.name }}</span>
+        </a>
       </li>
-    {% endfor %}
+      {% endfor %}
     </ul>
-  {% else %}
+    {% else %}
     <p>Aucun profil pour l’instant.</p>
-  {% endif %}
+    {% endif %}
 
-  <a class="button" href="{{ url_for('create') }}">Créer un AntiCV</a><br>
-  <a class="button" href="{{ url_for('logout') }}">Déconnexion</a><br>
-  <a class="button" href="{{ url_for('delete_account') }}">Supprimer mon compte</a><br>
-  <a class="button" href="{{ url_for('reset') }}">Mot de passe oublié</a>
-</div>
+    <a class="button" href="{{ url_for('create') }}">Créer un AntiCV</a><br>
+    <a class="button" href="{{ url_for('logout') }}">Déconnexion</a><br>
+    <a class="button" href="{{ url_for('delete_account') }}">Supprimer mon compte</a><br>
+    <a class="button" href="{{ url_for('reset') }}">Mot de passe oublié</a>
+  </div>
 </body>
+
 </html>
