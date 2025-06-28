@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="profile-page" style="background-color: {{ profile.color }};">
-  <div class="profile-container">
+  <div class="container profile-box">
     <h1>Profil : {{ profile.name }}</h1>
     <div class="profile-content">
       <img src="{{ url_for('static', filename=profile.image) }}" alt="Avatar de {{ profile.name }}">

@@ -10,13 +10,14 @@
 <body>
   <div class="container">
     <h1>Liste des AntiCV</h1>
-    {% if profiles %}
     <ul>
       {% for p in profiles %}
-      <li style="background-color: {{ p.color }};">
-        <a href="{{ url_for('profile', id=p.id) }}">
-          <span>{{ p.name }}</span>
-        </a>
+      <li>
+        <div class="cv-box" style="--cv-color: {{ p.color }};">
+          <a href="{{ url_for('profile', id=p.id) }}">
+            <span class="cv-content">{{ p.name }}</span>
+          </a>
+        </div>
       </li>
       {% endfor %}
     </ul>
