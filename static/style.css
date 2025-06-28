@@ -3,7 +3,7 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 10px;
-  background: #f4f4f4;
+  background: pink !important;
   color: #222;
 }
 
